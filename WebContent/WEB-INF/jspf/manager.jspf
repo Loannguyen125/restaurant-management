@@ -1,0 +1,8 @@
+<%@ include file="common.jspf" %>
+<%
+    response.setHeader("Cache-Control", "no-store");
+    if (manager == null || !"MANAGER".equals(manager.getPosition())) {
+        response.sendRedirect(root + "/LoginFrm1.jsp");
+        return;
+    }
+%>

@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Restaurant Management",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "/bin/bash .vscode/run-local.sh",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

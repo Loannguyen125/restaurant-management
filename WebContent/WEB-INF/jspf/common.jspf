@@ -1,0 +1,45 @@
+<%@ page pageEncoding="UTF-8" import="java.util.*,java.text.NumberFormat,model.ManagementStaff1" %>
+<%!
+    private String html(Object value) {
+        return value == null ? "" : value.toString().replace("&", "&amp;").replace("<", "&lt;")
+                .replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&#39;");
+    }
+
+    private String imageSource(String root, String image) {
+        return image.startsWith("/") ? root + image : image;
+    }
+
+    private String code(String prefix, int id) {
+        return String.format(Locale.ROOT, "%s%02d", prefix, id);
+    }
+
+    private String money(int amount) {
+        return NumberFormat.getIntegerInstance(Locale.forLanguageTag("vi-VN")).format(amount);
+    }
+
+    private String value(String parameter) {
+        return parameter == null ? "" : parameter.strip();
+    }
+
+    private int positiveInt(String text) {
+        if (!text.matches("[0-9]{1,10}")) throw new IllegalArgumentException("Invalid number");
+        int number = Integer.parseInt(text);
+        if (number < 1) throw new IllegalArgumentException("Invalid number");
+        return number;
+    }
+
+    private int price(String text) {
+        if (text.matches("[0-9]{1,3}(\\.[0-9]{3})+")) text = text.replace(".", "");
+        return positiveInt(text);
+    }
+%>
+<%
+    request.setCharacterEncoding("UTF-8");
+    String root = request.getContextPath();
+    ManagementStaff1 manager = (ManagementStaff1) session.getAttribute("manager");
+    String csrfToken = (String) session.getAttribute("csrfToken");
+    if (csrfToken == null) {
+        csrfToken = UUID.randomUUID().toString();
+        session.setAttribute("csrfToken", csrfToken);
+    }
+%>

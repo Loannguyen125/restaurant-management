@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Restaurant Management: Build WAR",
+      "type": "shell",
+      "command": "./mvnw",
+      "windows": {"command": ".\\mvnw.cmd"},
+      "args": ["clean", "package"],
+      "group": {"kind": "build", "isDefault": true},
+      "problemMatcher": []
+    }
+  ]
+}
